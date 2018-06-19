@@ -6,12 +6,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 public class Test_Runner {
 	WebDriver driver;
-	  //1st test to perform verifcation of Admin group that is System administrators	
+	  
+	//1st test to perform verifcation of Admin group that is System administrators	
 	  @Test(priority=1)
 	  public void f1() throws InterruptedException {
 	     Actions builder=new Actions(driver);
@@ -27,8 +29,13 @@ public class Test_Runner {
 	     String s=driver.findElement(By.xpath(".//*[@id='tdContents']/form/table/tbody/tr[2]/td/table/tbody/tr[1]/td[2]/input")).getAttribute("value");
 		 System.out.println(s);
 		 Thread.sleep(3000);
+		 String s1="http://localhost:8585/do/admin/adminProfile?fromMenu=true";
+ 		 String s2=driver.getCurrentUrl();
+ 		 Assert.assertEquals(s1,s2);
+ 		 System.out.println(s2);
 		 System.out.println("1st test to perform verifcation of Admin group that is System administrators");
 		  }
+	  
 	  //2nd test to perform verifcation of Login name that is admin
 	  @Test(priority=2)
 	  public void f2() throws InterruptedException
@@ -36,15 +43,25 @@ public class Test_Runner {
 		  ///taking value from "Login name"
 		  String s=driver.findElement(By.xpath(".//*[@id='tdContents']/form/table/tbody/tr[2]/td/table/tbody/tr[2]/td[2]/input")).getAttribute("value");
 	      System.out.println(s);
-	      Thread.sleep(3000);  
+	      String s1="http://localhost:8585/do/admin/adminProfile?fromMenu=true";
+	 		 String s2=driver.getCurrentUrl();
+	 		 Assert.assertEquals(s1,s2);
+	 		 System.out.println(s2);
+	      Thread.sleep(3000); 
+	     
 	      System.out.println("2nd test to perform verifcation of Login name that is admin");
 	   }
+	  
 	  //3rd test to edit the Full name
 	  @Test(priority=4)
 	  public void f3() throws InterruptedException
 	  {
 		  //click in "Change Button"
 		  driver.findElement(By.id("modifyButton")).click();
+		  String s1="http://localhost:8585/do/admin/adminProfile?fromMenu=true";
+	 		 String s2=driver.getCurrentUrl();
+	 		 Assert.assertEquals(s1,s2);
+	 		 System.out.println(s2);
 		 //clear the content of"Full name"  
 		  driver.findElement(By.xpath("//*[@id='tdContents']/form/table/tbody/tr[2]/td/table/tbody/tr[3]/td[2]/input")).clear();
 			Thread.sleep(3000);
@@ -55,13 +72,18 @@ public class Test_Runner {
 			Thread.sleep(3000);
 			Alert alert=driver.switchTo().alert();
 			 alert.accept();
-			  System.out.println("3rd test to edit the Full name");
+			 System.out.println("3rd test to edit the Full name");
 	  }
+	  
 	  //4th test to edit the E-Mail
 	  @Test(priority=5)
 	  public void f4() throws InterruptedException
 	  {      //click in "Change Button"
 		   driver.findElement(By.id("modifyButton")).click();
+		   String s1="localhost:8585/do/admin/adminProfile?fromMenu=true";
+	 		 String s2=driver.getCurrentUrl();
+	 		 Assert.assertEquals(s1,s2);
+	 		 System.out.println(s2);
 		 //clear the content of"Email"
 		   driver.findElement(By.xpath("//*[@id='tdContents']/form/table/tbody/tr[2]/td/table/tbody/tr[4]/td[2]/input")).clear();
 		  	Thread.sleep(3000);
@@ -74,6 +96,7 @@ public class Test_Runner {
 			alert.accept();
 			System.out.println("4th test to edit the E-Mail");
 	  }
+	  
 	  //5th test click "Change password" and change the password
 	  @Test(priority=6)
 	  public void f5() throws InterruptedException
@@ -94,12 +117,17 @@ public class Test_Runner {
 		  alert.accept();
 		  System.out.println("5th test click Change password and change the password");
 	  }
+	  
 	  //6th test to check whether the "Admin group that is System administrators" and "Login name that is admin" is editable or not
 	  @Test(priority=3)
 	  public void f6() throws InterruptedException
 	  {
 		 //click in "Personal"  
 		 driver.findElement(By.xpath(".//*[@id='submenu1.0']/span[2]")).click();
+		 String s1="http://localhost:8585/do/admin/adminProfile?fromMenu=true";
+ 		 String s2=driver.getCurrentUrl();
+ 		 Assert.assertEquals(s1,s2);
+ 		 System.out.println(s2);
 	     //check whether the Admin group is editable or not.
 		 driver.findElement(By.xpath(".//*[@id='tdContents']/form/table/tbody/tr[2]/td/table/tbody/tr[1]/td[2]/input")).isEnabled();
 		 Thread.sleep(3000); 
@@ -108,6 +136,7 @@ public class Test_Runner {
 	     Thread.sleep(3000); 
 	     System.out.println("6th test to check whether the Admin group that is System administrators and Login name that is admin is editable or not");
 	  }
+	  
 	  @BeforeTest
 	  public void beforeTest() {
 		  	 driver=new FirefoxDriver();
