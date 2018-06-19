@@ -122,5 +122,5 @@ public class Test_Runner {
 	 @AfterTest
 	 public void afterTest() {
 		  System.out.println("Run Successful");	
-		  driver.quit();
+		  driver.close();
 }}
